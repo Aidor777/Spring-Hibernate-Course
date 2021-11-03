@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- Define logging config -->
+    <bean id="myLoggerConfig" class="com.lovetocode.springdemo.config.MyLoggerConfig" init-method="initLogger">
+        <property name="rootLoggerLevel" value="FINE"/>
+        <property name="printLoggerLevel" value="FINE"/>
+    </bean>
+
+    <!-- Custom bean processor to handle calling destroy methods on prototype-scoped beans -->
+    <bean id="customBeanProcessor" class="com.lovetocode.springdemo.config.MyCustomBeanProcessor"/>
+
+    <!-- Define the dependency -->
+    <bean id="myFortune" class="com.lovetocode.springdemo.fortune.HappyFortuneService"/>
+
+    <bean id="myCoach" class="com.lovetocode.springdemo.coach.TrackCoach" scope="prototype" init-method="setUp">
+          <!-- destroy-method="tearDown" is useless if scope="prototype" -->
+        <!-- Set up constructor injection -->
+        <constructor-arg ref="myFortune"/>
+    </bean>
+
+</beans>
