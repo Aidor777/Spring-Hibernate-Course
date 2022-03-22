@@ -6,7 +6,7 @@ public class TestJdbc {
 
     public static void main(String[] args) {
 
-        String databaseUrl = "jdbc:mysql://localhost:3306/hb_one_to_one?useSSL=false&serverTimezone=UTC";
+        String databaseUrl = "jdbc:mysql://localhost:3306/hb_demo?useSSL=false&serverTimezone=UTC";
         String user = "hbstudent";
         String password = "hbstudent";
 
