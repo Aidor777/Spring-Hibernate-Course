@@ -3,7 +3,7 @@ package com.lovetocode.hibernate.test;
 import com.lovetocode.hibernate.entity.*;
 import org.hibernate.cfg.Configuration;
 
-public class DeleteCourseTest {
+public class DeleteStudentTest {
 
     public static void main(String[] args) {
 
@@ -16,11 +16,13 @@ public class DeleteCourseTest {
             // Begin transaction
             session.beginTransaction();
 
-            // Get a course and delete it
-            int courseID = 10;
-            var course = session.get(Course.class, courseID);
-            System.out.println("Deleting course: " + course);
-            session.delete(course);
+            // Get a student and delete it
+            int studentID = 2;
+            var student = session.get(Student.class, studentID);
+            System.out.println("Got student: " + student);
+            System.out.println("With courses: " + student.getCourses());
+            System.out.println("Deleting student...");
+            session.delete(student);
 
             // Commit transaction
             session.getTransaction().commit();
